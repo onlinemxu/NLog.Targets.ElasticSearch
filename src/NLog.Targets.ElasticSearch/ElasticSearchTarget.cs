@@ -347,7 +347,6 @@ namespace NLog.Targets.ElasticSearch
                         {
                             Attributes = {
                                 new JsonAttribute("_index", Index) { EscapeForwardSlash = false },
-                                new JsonAttribute("_type", DocumentType) { EscapeForwardSlash = false },
                                 new JsonAttribute("pipeline", Pipeline) { EscapeForwardSlash = false },
                             }
                         }, encode: false)
@@ -534,9 +533,9 @@ namespace NLog.Targets.ElasticSearch
                 else
                 {
                     if (opCodeCreate)
-                        return new { create = new { _index = index, _type = mappingType } };
+                        return new { create = new { _index = index } };
                     else
-                        return new { index = new { _index = index, _type = mappingType } };
+                        return new { index = new { _index = index } };
                 }
             }
             else
@@ -551,9 +550,9 @@ namespace NLog.Targets.ElasticSearch
                 else
                 {
                     if (opCodeCreate)
-                        return new { create = new { _index = index, _type = mappingType, pipeline = pipeLine } };
+                        return new { create = new { _index = index, pipeline = pipeLine } };
                     else
-                        return new { index = new { _index = index, _type = mappingType, pipeline = pipeLine } };
+                        return new { index = new { _index = index, pipeline = pipeLine } };
                 }
             }
         }
